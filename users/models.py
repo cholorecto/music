@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=True
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-
+    updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
