@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views import View
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 
 from .forms import LoginForm
 
@@ -17,5 +17,8 @@ class UserLogin(TemplateView):
 
     def post(self, *args, **kwargs):
         form = LoginForm(self.request.POST)
-        form.auth()
-        return redirect('UserLogin')
+        if form.is_valid():
+            login(self.request, form.user)
+            return redirect('UserLogin')
+
+        return render(self.request, self.template_name, {'form':form})
