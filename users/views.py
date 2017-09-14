@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views import View
 from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import LoginForm
 
@@ -12,7 +13,7 @@ class UserLogin(TemplateView):
     template_name = 'auth/login.html'
 
     def get(self, *args, **kwargs):
-        """ Displays the login form
+        """ Renders the login form
         """
         form = LoginForm()
         return render(self.request, self.template_name, {'form':form})
@@ -28,12 +29,17 @@ class UserLogin(TemplateView):
         return render(self.request, self.template_name, {'form':form})
 
 
-class Dashboard(TemplateView):
-    """ Displays the dashboard page
+class Dashboard(LoginRequiredMixin, TemplateView):
+    """ Displays the dashboard page and used LoginRequiredMixin 
+        to check the user if logged in.
     """
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     template_name = 'dashboard.html'
 
     def get(self, *args, **kwargs):
+        """ Renders the dashboard page
+        """
         return render(self.request, self.template_name)
 
 
