@@ -12,10 +12,14 @@ class UserLogin(TemplateView):
     template_name = 'auth/login.html'
 
     def get(self, *args, **kwargs):
+        """ Displays the login form
+        """
         form = LoginForm()
         return render(self.request, self.template_name, {'form':form})
 
     def post(self, *args, **kwargs):
+        """ submits the data
+        """
         form = LoginForm(self.request.POST)
         if form.is_valid():
             login(self.request, form.user)
@@ -31,3 +35,11 @@ class Dashboard(TemplateView):
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
+
+
+class UserLogout(View):
+    """ Logout the user account
+    """
+    def get(self, *args, **kwargs):
+        logout(self.request)
+        return redirect('UserLogin')
