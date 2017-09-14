@@ -10,12 +10,12 @@ class LoginForm(forms.Form):
 
     def clean(self):
         """ Gets the data from the login form 
-            and authenticates the user.
+            and authenticates the user
         """
         cleaned_data = super(LoginForm, self).clean()
         email = cleaned_data.get('email')
         password = cleaned_data.get('password')
-        auth = authenticate(email=email,password=password)
+        auth = authenticate(email=email, password=password)
         if not auth:
             raise forms.ValidationError("Check your password!")
         else:
