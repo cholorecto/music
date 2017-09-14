@@ -24,7 +24,7 @@ class UserLogin(TemplateView):
         form = LoginForm(self.request.POST)
         if form.is_valid():
             login(self.request, form.user)
-            return redirect('Dashboard')
+            return redirect('dashboard')
 
         return render(self.request, self.template_name, {'form':form})
 
@@ -40,7 +40,7 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     def get(self, *args, **kwargs):
         """ Renders the dashboard page
         """
-        return render(self.request, self.template_name)
+        return render(self.request, self.template_name, {})
 
 
 class UserLogout(View):
@@ -48,4 +48,4 @@ class UserLogout(View):
     """
     def get(self, *args, **kwargs):
         logout(self.request)
-        return redirect('UserLogin')
+        return redirect('user_login')
