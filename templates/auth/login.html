@@ -2,7 +2,7 @@
 	{% csrf_token %}
 	{{ form.non_field_errors }}
 	<label>Email</label>
-	{{form.email.errors}}
+	<span>{{form.email.errors}}</span>
 	<input type="text" name="email">
 	<label>Password</label>
 	<input type="password" name="password">
