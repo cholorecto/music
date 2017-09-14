@@ -19,6 +19,15 @@ class UserLogin(TemplateView):
         form = LoginForm(self.request.POST)
         if form.is_valid():
             login(self.request, form.user)
-            return redirect('UserLogin')
+            return redirect('Dashboard')
 
         return render(self.request, self.template_name, {'form':form})
+
+
+class Dashboard(TemplateView):
+    """ Displays the dashboard page
+    """
+    template_name = 'dashboard.html'
+
+    def get(self, *args, **kwargs):
+        return render(self.request, self.template_name)
