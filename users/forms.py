@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
         password = cleaned_data.get('password')
         auth = authenticate(email=email, password=password)
         if not auth:
-            raise forms.ValidationError("Provide correct Information!")
+            raise forms.ValidationError("Wrong Email or Password!")
         else:
             self.user = auth
 
