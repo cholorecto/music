@@ -33,8 +33,6 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     """ Displays the dashboard page and used LoginRequiredMixin 
         to check the user if logged in.
     """
-    login_url = '/login/'
-    redirect_field_name = 'redirect_to'
     template_name = 'dashboard.html'
 
     def get(self, *args, **kwargs):
