@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from playlist.models import Playlist, Song, SongHistory
 from users.models import User
-from playlist.forms import SongForm, PlaylistForm
+from playlist.forms import SongForm, PlaylistForm, SearchPlaylist
 
 
 class AllPlaylistView(LoginRequiredMixin, TemplateView):
@@ -18,9 +18,11 @@ class AllPlaylistView(LoginRequiredMixin, TemplateView):
         """show all playlists
         """
         form = PlaylistForm()
+        search_form = SearchPlaylist()
         return render(self.request, self.template_name, {
             'playlists': Playlist.objects.all(),
-            'form':form
+            'form':form,
+            'search_form':search_form
         })
 
     def post(self, *args, **kwargs):
@@ -139,3 +141,12 @@ class SongDelete(LoginRequiredMixin, View):
         song.save(archive=True)
         return redirect('playlist', kwargs['playlist_id'])
 
+
+class SearchedPlaylist(LoginRequiredMixin, TemplateView):
+    """ Searched playlist according to the keyword
+    """
+    template_name = 'playlist/search_playlist.html'
+    def post(self, *args, **kwargs):
+        keyword = self.request.POST['keyword']
+        playlists = Playlist.objects.filter(title__icontains=keyword)
+        return render(self.request, self.template_name, {'playlists':playlists})
