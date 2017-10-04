@@ -29,6 +29,9 @@ class Playlist(models.Model):
             return song.thumb_url
         return None
 
+    def get_class_name( self ):
+        return self.__class__.__name__
+
 
 class Song(models.Model):
     """Song
@@ -68,6 +71,8 @@ class Song(models.Model):
         log.save()
         return super(Song, self).save(*args, **kwargs) # Calls the real save method
 
+    def get_class_name( self ):
+        return self.__class__.__name__
 
 class SongHistory(models.Model):
     """ Tracks action done on Song model 
