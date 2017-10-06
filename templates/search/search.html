@@ -19,15 +19,25 @@
 
             {% for result in page.object_list %}
                 <p>
+                    
+                <div class="media">
+                  <div class="media-left media-middle">
                     {% if result.object.get_class_name == 'Song'%}
-                    Song:
-                    <a href="{% url 'playlist' result.object.playlist.id %}">{{ result.object.title }}</a>
+                        <img class="media-object" src="{{result.object.thumb_url}}">
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href="{% url 'playlist' result.object.playlist.id %}">{{ result.object.title }}</a></h4>
                     {% else %}
-                    Playlist:
-                    <a href="{% url 'playlist' result.object.id %}">{{ result.object.title }}</a>
+                        <img class="media-object" src="{{result.object.get_thumb_url}}">
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href="{% url 'playlist' result.object.id %}">{{ result.object.title }}</a></h4>
+                      {{ result.object.number_of_songs }} song{{ result.object.number_of_songs|pluralize }}
+                      <br>
                     {% endif %}
-                    <br>
-                    by: {{result.object.user}}
+                      by: {{result.object.user}}
+                  </div>
+              </div>
                 </p>
             {% empty %}
                 <p>No results found.</p>

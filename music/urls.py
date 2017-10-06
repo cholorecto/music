@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^videoplayer/', include('videoplayer.urls')),
     url(r'^music/',include('playlist.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-#    url(r'^search/', include('haystack.urls')),
+    url(r'^search/', include('haystack.urls')),
 ]
