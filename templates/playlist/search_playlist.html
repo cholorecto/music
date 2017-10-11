@@ -29,6 +29,11 @@
 
         <a class="btn btn-primary" href="{% url 'playlist' playlist.id %}">View Playlist</a>
       </div>
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{% url 'playlist' playlist.id %}">{{ playlist.title }}</a></h4>
+      {{ playlist.number_of_songs }} song{{ playlist.number_of_songs|pluralize }}
+      <br>
+      By: {{ playlist.user }}
     </div>
   </div>
   {% endfor %}
