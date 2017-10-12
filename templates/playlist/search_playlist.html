@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <h1>Search Results</h1>
@@ -6,11 +7,6 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h1>{{ playlist.title }}</h2>
-   <div class="media">
-    <div class="media-left">
-      <a href="#">
-          <img class="media-object" src="{{ playlist.get_thumb_url }}" width="120px" height="90px">
-      </a>
     </div>
     <div class="panel-body">
       <div class="col-md-6">
@@ -29,11 +25,6 @@
 
         <a class="btn btn-primary" href="{% url 'playlist' playlist.id %}">View Playlist</a>
       </div>
-    <div class="media-body">
-      <h4 class="media-heading"><a href="{% url 'playlist' playlist.id %}">{{ playlist.title }}</a></h4>
-      {{ playlist.number_of_songs }} song{{ playlist.number_of_songs|pluralize }}
-      <br>
-      By: {{ playlist.user }}
     </div>
   </div>
   {% endfor %}
