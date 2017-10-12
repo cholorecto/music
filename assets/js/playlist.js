@@ -99,11 +99,6 @@
                     + '<br>'
                     + 'By: '+ response.user_email +''
                     + '<br>'
-                    + '<a href="' 
-                    +  + '">Edit</a>'
-                    + ' '
-                    + '<a href="'
-                    +  + '">Delete</a>'
                     + '</div>'
                     + '</div>';
       $('#playlists').append(playlist_tpl);
