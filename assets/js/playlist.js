@@ -107,3 +107,24 @@
       alert("Something went wrong!")
     });
   });
+
+
+ // '<div class="panel panel-default">'
+ //    +'<div class="panel-heading">'
+ //      +'<h3>'+ response.title +'</h3>'
+ //    +'</div>'
+ //    +'<div class="panel-body">'
+ //      +'<div class="col-md-6">'
+ //        +'<div class="row">'
+ //            +'<img class="img-responsive" src="'+ response.get_thumb_url +'" width="120px" height="90px">'
+ //        +'</div>'
+ //      +'</div>'
+ //      +'<div class="col-md-6">'
+ //       ='<hr class="visible-sm visible-xs">'
+ //        +'<p>0 songs</p>'
+ //        +'<p>by <strong>'+ response.user_email +'</strong></p>'
+
+ //        +'<a class="btn btn-primary" href="/music/playlist/'+ response.id +'/">View Playlist</a>'
+ //      +'</div>'
+ //    +'</div>'
+ //  +'</div>';
