@@ -29,25 +29,31 @@
 
 <div class="col-md-4">
   <div id="playlists">
-  {% if playlists %}
-    {% for playlist in playlists %}
-     <div class="media">
-      <div class="media-left">
-        <a href="{% url 'playlist' playlist.id %}">
-            <img class="media-object" src="{{ playlist.get_thumb_url }}" width="120px" height="90px">
-        </a>
+{% if playlists %}
+  {% for playlist in playlists %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>{{ playlist.title }}</h2>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-6">
+        <div class="row">
+            <img class="img-responsive" src="{{ playlist.get_thumb_url }}">
+        </div>
       </div>
-      <div class="media-body">
-        <h4 class="media-heading"><a href="{% url 'playlist' playlist.id %}">{{ playlist.title }}</a></h4>
-        {{ playlist.number_of_songs }} song{{ playlist.number_of_songs|pluralize }}
-        <br>
-        By: {{ playlist.user }}
+      <div class="col-md-6">
+        <hr class="visible-sm visible-xs">
+        <p>{{ playlist.number_of_songs }} song{{ playlist.number_of_songs|pluralize }}</p>
+        <p>by <strong>{{ playlist.user }}</strong></p>
+
+        <a class="btn btn-primary" href="{% url 'playlist' playlist.id %}">View Playlist</a>
       </div>
     </div>
-    {% endfor %}
-  {% else %}
-    Create a playlist now!
-  {% endif %}
+  </div>
+  {% endfor %}
+{% else %}
+  No results found!
+{% endif %}
   </div>
 </div>
 
