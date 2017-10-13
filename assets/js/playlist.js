@@ -82,7 +82,7 @@
     event.preventDefault();
     var form = $('#add_playlist').serialize();
     $.post({
-      url: 'api/add/playlist/',
+      url: $(this).attr('url'),
       data: form
     }).done(function(response){
 
